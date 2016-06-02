@@ -1,5 +1,5 @@
 {
-  "name": "xtemplate",
+  "name": "jstemplate",
   "version": "1.0.0",
   "description": "一个使用简单的javascript模版引擎，主要解决普通绑定和循环绑定问题。",
   "main": "Gruntfile.js",
@@ -11,14 +11,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/seefan/xtemplate"
+    "url": "https://github.com/seefan/jstemplate"
   },
   "author": "seefan",
   "license": "GNU",
   "bugs": {
-    "url": "https://github.com/seefan/xtemplate/issues"
+    "url": "https://github.com/seefan/jstemplate/issues"
   },
-  "homepage": "https://github.com/seefan/xtemplate",
+  "homepage": "https://github.com/seefan/jstemplate",
   "devDependencies": {
     "grunt": "^0.4.5",
     "grunt-contrib-jshint": "^0.11.3",

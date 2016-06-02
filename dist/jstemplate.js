@@ -1,5 +1,5 @@
 /**
- * XTemplate的运行主体，对外使用的变量有$scope，当使用bindData时，变量会按绑定名字注入这个变量。
+ * JsTemplate的运行主体，对外使用的变量有$scope，当使用bindData时，变量会按绑定名字注入这个变量。
  *
  * 目前支持两种形式的绑定，单变量绑定和数组。
  *
@@ -1132,7 +1132,7 @@
         return re;
     };
 })(window.Render);;/**
- * XTemplate 所有的扩展函数集合，用于处理html中常见的格式转换，默认值等处理。
+ * JsTemplate 所有的扩展函数集合，用于处理html中常见的格式转换，默认值等处理。
  * 如果需要自行扩展，请使用window.Render的addFunc函数
  *
  * @class Render.funcs
@@ -1386,8 +1386,8 @@
         return newStr;
     });
 })(window.Render);;/**
- * XTemplate，简单快速的将json数据绑定到html上
- * @class XTemplate
+ * JsTemplate，简单快速的将json数据绑定到html上
+ * @class JsTemplate
  */
 (function (d, w, x,r) {
     'use strict';
@@ -1397,7 +1397,7 @@
     x.optAjax = false;
     x.hideRepeat = true;
     x.hideBind = false;
-    //准备方法，XTemplate的入口方法，XTemplate准备好后将执行这个方法，以便自动执行一些绑定函数等。
+    //准备方法，JsTemplate的入口方法，JsTemplate准备好后将执行这个方法，以便自动执行一些绑定函数等。
     x.ready = function (callback) {
         if (!x.isInit) {
             if (typeof callback === 'function') {
@@ -1446,7 +1446,7 @@
     };
 
     /**
-     * 将Render.util工具函数集合引入XTemplate，方便后续使用。具体内容见{{#crossLink "Render.util"}}{{/crossLink}}。
+     * 将Render.util工具函数集合引入JsTemplate，方便后续使用。具体内容见{{#crossLink "Render.util"}}{{/crossLink}}。
      * @property util
      * @type {Object}
      */

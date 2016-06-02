@@ -1,6 +1,6 @@
 /**
- * XTemplate，简单快速的将json数据绑定到html上
- * @class XTemplate
+ * JsTemplate，简单快速的将json数据绑定到html上
+ * @class JsTemplate
  */
 (function (d, w, x,r) {
     'use strict';
@@ -10,7 +10,7 @@
     x.optAjax = false;
     x.hideRepeat = true;
     x.hideBind = false;
-    //准备方法，XTemplate的入口方法，XTemplate准备好后将执行这个方法，以便自动执行一些绑定函数等。
+    //准备方法，JsTemplate的入口方法，JsTemplate准备好后将执行这个方法，以便自动执行一些绑定函数等。
     x.ready = function (callback) {
         if (!x.isInit) {
             if (typeof callback === 'function') {
@@ -59,7 +59,7 @@
     };
 
     /**
-     * 将Render.util工具函数集合引入XTemplate，方便后续使用。具体内容见{{#crossLink "Render.util"}}{{/crossLink}}。
+     * 将Render.util工具函数集合引入JsTemplate，方便后续使用。具体内容见{{#crossLink "Render.util"}}{{/crossLink}}。
      * @property util
      * @type {Object}
      */

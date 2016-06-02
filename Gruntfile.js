@@ -7,7 +7,7 @@ module.exports = function (grunt) {
                 separator: ';'
             },
             dist: {
-                src: ['src/render.js', 'src/util.js', 'src/syntax.js', 'src/funcs.js', 'src/xtemplate.js'],
+                src: ['src/render.js', 'src/util.js', 'src/syntax.js', 'src/funcs.js', 'src/template.js'],
                 dest: 'dist/<%= pkg.name %>.js'
             }
         },
@@ -41,8 +41,8 @@ module.exports = function (grunt) {
         },
         yuidoc: {
             compile: {
-                "name": "XTemplate",
-                "description": "XTemplate的中文API文档",
+                "name": "JsTemplate",
+                "description": "JsTemplate的中文API文档",
                 "logo": "logo.jpg",
                 "options": {
                     paths: "src",
