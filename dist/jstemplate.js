@@ -1389,13 +1389,13 @@
  * JsTemplate，简单快速的将json数据绑定到html上
  * @class JsTemplate
  */
-(function (d, w, x,r) {
+(function (d, w, x, r) {
     'use strict';
     //是否已初始化
     x.isInit = false;
     //是否使用其它的ajax方法，默认使用jquery
     x.optAjax = false;
-    x.hideRepeat = true;
+    x.hideRepeat = false;
     x.hideBind = false;
     //准备方法，JsTemplate的入口方法，JsTemplate准备好后将执行这个方法，以便自动执行一些绑定函数等。
     x.ready = function (callback) {
@@ -1610,4 +1610,4 @@
             setTimeout(timeReady, 5);
         }
     }
-})(document, window, window.XTemplate = {},window.Render);
+})(document, window, window.XTemplate = {}, window.Render);
