@@ -1,5 +1,5 @@
 # JsTemplate
-一个使用简单的javascript模版引擎，主要解决普通绑定和循环绑定问题。
+一个解放程序员的javascript模版引擎，使用简单，并且不破坏网页代码结构。
 
 
 api请见 http://www.seefan.net/doc/
