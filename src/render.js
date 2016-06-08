@@ -406,7 +406,7 @@
             data = name;
             name = 'data';
         }
-        if (!data || data.length < 1) {
+        if (!data || !r.util.isArray(data)) {
             return;
         }
         var items = r.util.querySelectorAll('[data-repeat-name="' + name + '"]');
