@@ -27,6 +27,7 @@
      * 初始化
      */
     x.init = function () {
+
         if (!x.isInit) {
             x.isInit = true;
             r.init();

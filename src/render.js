@@ -319,6 +319,7 @@
         }
         w.$scope[name] = data;
         var items = r.util.querySelectorAll('[data-bind]');
+
         if (!items || !items.length) {
             return;
         }

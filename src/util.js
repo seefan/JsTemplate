@@ -241,8 +241,8 @@
      * 设置style.display=''，同时去掉class中名为hide样式
      *
      * @method show
-     * @param ele 要显示的对象实例
-     * @param isTrue 是否显示，默认为true
+     * @param ele {string} 要显示的对象实例
+     * @param isTrue {boolean} 是否显示，默认为true
      */
     u.show = function (ele, isTrue) {
         if (ele) {
@@ -259,8 +259,8 @@
     /**
      * 增加一个class
      * @method setValue
-     * @param ele
-     * @param className
+     * @param ele {object} 要操作的对象
+     * @param className {string} 要增加的class名称
      */
     u.addClass = function (ele, className) {
         if (ele.classList) {
@@ -289,8 +289,8 @@
     /**
      * 删除一个class
      * @method setValue
-     * @param ele
-     * @param className
+     * @param ele {object} 要操作的对象
+     * @param className {string} 要删除的class名称
      */
     u.removeClass = function (ele, className) {
         if (ele.classList) {
@@ -345,6 +345,20 @@
             }
         }
         return args;
+    };
+    /**
+     * 设置url的参数
+     * @method setUrlQuery
+     * @param qs {object} 一个包含keyvalue的对象
+     */
+    u.setUrlQuery = function (qs) {
+        var search='';
+        for (var q in qs) {
+            if(qs[q]){
+                search += q + '=' + encodeURIComponent(qs[q]) + '&';
+            }
+        }
+        w.location.search = search;
     };
     u.querySelectorAll = function (q) {
         if(document.querySelectorAll) {

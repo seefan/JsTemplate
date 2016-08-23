@@ -1,10 +1,10 @@
 /**
  * 使用jQuery来兼容ie8以下
  */
-(function (r, undefined) {
+(function (util, undefined) {
     'use strict';
     if (!document.querySelectorAll) {
-        r.querySelectorAll  = function (q) {
+        util.querySelectorAll  = function (q) {
             var item = $(q), re = [];
             item.each(function (i, e) {
                 re.push(e);
