@@ -327,6 +327,9 @@
         for (i = 0; i < items.length; i++) {
             value = '';
             key = items[i].attributes['data-bind'].value;
+            if (name != '__data__' && key.indexOf('.') != -1) {
+                key = key.substring(name.length + 1);
+            }
             var bs = this.util.getBindToNameList(items[i]),
                 m = 0;//data-bind-to
 
