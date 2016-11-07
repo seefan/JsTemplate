@@ -441,14 +441,18 @@
             } else {
                 var html = '';
                 for (i = 0; i < data.length; i++) {
-                    html += func(this, data[i]);
+                    var tmp = data[i];
+                    tmp.__index__ = i;
+                    html += func(this, tmp);
                 }
                 this.setRepeatHtml(item, html, append);
             }
         }
     };
     r.appendData = function (data, i, item, func, append) {
-        r.setRepeatHtml(item, func(this, data[i]), i === 0 ? (append === true ? true : false) : true);
+        var tmp = data[i];
+        tmp.__index__ = i;
+        r.setRepeatHtml(item, func(this, tmp), i === 0 ? (append === true ? true : false) : true);
         i++;
         if (i < data.length) {
             setTimeout(function () {
