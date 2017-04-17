@@ -60,7 +60,7 @@
             var f = splitWord(funcString);
             if (f.length > 0) {
                 if (filterHtml) {
-                    return 'Render.util.html(' + runFuncString(f, f.length - 1) + ')';
+                    return 'JsRender.util.html(' + runFuncString(f, f.length - 1) + ')';
                 } else {
                     return runFuncString(f, f.length - 1);
                 }
@@ -293,4 +293,4 @@
         }
         return re;
     };
-})(window.Render);
+})(window.jsRender);

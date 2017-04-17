@@ -1,7 +1,7 @@
 /**
  * 使用jQuery来兼容ie8以下
  */
-(function (util, undefined) {
+(function (util) {
     'use strict';
     if (!document.querySelectorAll) {
         util.querySelectorAll  = function (q) {
@@ -20,4 +20,4 @@
             return this.replace(/^\s+|\s+$/g, '');
         };
     }
-})(window.Render.util);
+})(window.jsRender.util);

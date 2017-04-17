@@ -37,37 +37,17 @@ module.exports = function (grunt) {
 
         watch: {
             files: ['<%= jshint.files %>'],
-            tasks: ['jshint', 'concat', 'yuidoc', 'copy']
-        },
-        yuidoc: {
-            compile: {
-                "name": "JsTemplate",
-                "description": "JsTemplate的中文API文档",
-                "logo": "logo.jpg",
-                "options": {
-                    paths: "src",
-                    outdir: "doc"
-                }
-            }
-        },
-        copy: {
-            main: {
-                files: [
-                    {src: ['examples/logo.jpg'], dest: 'doc/logo.jpg'}
-                ]
-            }
+            tasks: ['jshint', 'concat']
         }
     });
 
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-jshint');
-    grunt.loadNpmTasks('grunt-contrib-copy');
-    grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-concat');
-    grunt.loadNpmTasks("grunt-contrib-yuidoc");
+    grunt.loadNpmTasks("grunt-contrib-watch");
     //grunt.loadNpmTasks("grunt-ftpscript");
     //grunt.registerTask('test', ['jshint', 'qunit']);
 
-    grunt.registerTask('default', ['concat', 'jshint', 'uglify', 'watch', 'yuidoc', 'copy']);
+    grunt.registerTask('default', ['concat', 'jshint', 'uglify', 'watch']);
 
 };
