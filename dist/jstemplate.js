@@ -277,7 +277,6 @@
     r.util = {};
     /**
      * 初始化语法结构
-     * @param document 渲染器的有效范围
      */
     r.init = function () {
         var items, i;
@@ -452,7 +451,7 @@
     r.appendData = function (data, i, item, func, append) {
         var tmp = data[i];
         tmp.__index__ = i;
-        r.setRepeatHtml(item, func(this, tmp), i === 0 ? (append === true ? true : false) : true);
+        r.setRepeatHtml(item, func(this, tmp), i === 0 ? (append === true) : true);
         i++;
         if (i < data.length) {
             setTimeout(function () {
@@ -491,7 +490,7 @@
         }
     };
 })
-(window, document, window.Render = {});;/**
+(window, document, window.jsRender = {});;/**
  * 常用工具方法集合
  * @class Render.util
  */
@@ -588,8 +587,8 @@
     //    return toString.apply(val) === "[object Array]";
     //};
     u.isArray = Array.isArray || function (object) {
-        return object instanceof Array;
-    };
+            return object instanceof Array;
+        };
     /**
      * 取数组的key全集，内部使用
      * @param key
@@ -611,7 +610,7 @@
                     var names = [];
                     for (var k in value) {
                         //跳过非属性
-                        if (value[k]) {
+                        if (value.hasOwnProperty(k)) {
                             var tkv = u.getName(k, value);
                             for (var i = 0; i < tkv.length; i++) {
                                 names.push(key + '.' + tkv[i]);
@@ -638,11 +637,7 @@
      * @returns {boolean}
      */
     u.startWith = function (str, startString) {
-        if (str && startString && str.length > startString.length && str.substr(0, startString.length) == startString) {
-            return true;
-        } else {
-            return false;
-        }
+        return (typeof str === 'string' && str.indexOf(startString) === 0);
     };
     /**
      * 使用正则表示式判断是否为数字格式
@@ -743,7 +738,7 @@
                 if (ele.style.display == 'none') {
                     ele.style.display = '';
                 }
-                u.removeClass(ele,'hide');
+                u.removeClass(ele, 'hide');
             } else {
                 ele.style.display = 'none';
             }
@@ -845,20 +840,29 @@
      * @param qs {object} 一个包含keyvalue的对象
      */
     u.setUrlQuery = function (qs) {
-        var search='';
+        var search = '';
         for (var q in qs) {
-            if(qs[q]){
+            if (qs[q]) {
                 search += q + '=' + encodeURIComponent(qs[q]) + '&';
             }
         }
         w.location.search = search;
     };
     u.querySelectorAll = function (q) {
-        if(document.querySelectorAll) {
+        if (document.querySelectorAll) {
             return document.querySelectorAll(q);
         }
     };
-})(window, window.Render.util);;/**
+    /**
+     * 计算表达式的值
+     * @param fn
+     * @returns {*}
+     */
+    u.eval = function (fn) {
+        var Fn = Function; //一个变量指向Function，防止有些前端编译工具报错
+        return new Fn('return ' + fn)();
+    };
+})(window, window.jsRender.util);;/**
  * Render 的语法定义
  */
 (function (r) {
@@ -920,7 +924,7 @@
             var f = splitWord(funcString);
             if (f.length > 0) {
                 if (filterHtml) {
-                    return 'Render.util.html(' + runFuncString(f, f.length - 1) + ')';
+                    return 'JsRender.util.html(' + runFuncString(f, f.length - 1) + ')';
                 } else {
                     return runFuncString(f, f.length - 1);
                 }
@@ -1153,7 +1157,7 @@
         }
         return re;
     };
-})(window.Render);;/**
+})(window.jsRender);;/**
  * JsTemplate 所有的扩展函数集合，用于处理html中常见的格式转换，默认值等处理。
  * 如果需要自行扩展，请使用window.Render的addFunc函数
  *
@@ -1304,7 +1308,7 @@
      * @param val {string} 变量名
      * @returns {string}
      */
-    r.addFunc('noFunc', function (val) {
+    r.addFunc('noFunc', function () {
         return '没有找到正确的处理函数';
     });
     /**
@@ -1407,7 +1411,7 @@
         }
         return newStr;
     });
-})(window.Render);;/**
+})(window.jsRender);;/**
  * JsTemplate，简单快速的将json数据绑定到html上
  * @class JsTemplate
  */
@@ -1555,7 +1559,7 @@
         opt.type = 'POST';
         if (errorback) {
             opt.error = errorback;
-        } else if (x.error_callback) {
+        } else if (typeof x.error_callback === 'function') {
             opt.error = x.error_callback;
         } else {
             opt.error = function (data, status) {
@@ -1564,12 +1568,10 @@
         }
         opt.success = function (data) {
             if (typeof data === 'string') {
-                /* jshint ignore:start */
-                data = eval('(' + data + ')');
-                /* jshint ignore:end */
+                data = r.util.eval('(' + data + ')');
             }
             var ok = !!data;
-            if (x.checkData) {
+            if (typeof x.checkData === 'function') {
                 if (!x.checkData(data)) {
                     ok = false;
                 }
@@ -1633,4 +1635,4 @@
             setTimeout(timeReady, 5);
         }
     }
-})(document, window, window.XTemplate = {}, window.Render);
+})(document, window, window.jsTemplate = {}, window.jsRender);

@@ -146,7 +146,7 @@
         opt.type = 'POST';
         if (errorback) {
             opt.error = errorback;
-        } else if (x.error_callback) {
+        } else if (typeof x.error_callback === 'function') {
             opt.error = x.error_callback;
         } else {
             opt.error = function (data, status) {
@@ -155,12 +155,10 @@
         }
         opt.success = function (data) {
             if (typeof data === 'string') {
-                /* jshint ignore:start */
-                data = eval('(' + data + ')');
-                /* jshint ignore:end */
+                data = r.util.eval('(' + data + ')');
             }
             var ok = !!data;
-            if (x.checkData) {
+            if (typeof x.checkData === 'function') {
                 if (!x.checkData(data)) {
                     ok = false;
                 }
@@ -224,4 +222,4 @@
             setTimeout(timeReady, 5);
         }
     }
-})(document, window, window.XTemplate = {}, window.Render);
+})(document, window, window.jsTemplate = {}, window.jsRender);

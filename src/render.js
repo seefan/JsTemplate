@@ -277,7 +277,6 @@
     r.util = {};
     /**
      * 初始化语法结构
-     * @param document 渲染器的有效范围
      */
     r.init = function () {
         var items, i;
@@ -454,7 +453,7 @@
     r.appendData = function (data, i, item, func, append) {
         var tmp = data[i];
         tmp.__index__ = i;
-        r.setRepeatHtml(item, func(this, tmp), i === 0 ? (append === true ? true : false) : true);
+        r.setRepeatHtml(item, func(this, tmp), i === 0 ? (append === true) : true);
         i++;
         if (i < data.length) {
             setTimeout(function () {
@@ -493,4 +492,4 @@
         }
     };
 })
-(window, document, window.Render = {});
+(window, document, window.jsRender = {});

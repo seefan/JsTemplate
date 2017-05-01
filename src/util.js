@@ -95,8 +95,8 @@
     //    return toString.apply(val) === "[object Array]";
     //};
     u.isArray = Array.isArray || function (object) {
-        return object instanceof Array;
-    };
+            return object instanceof Array;
+        };
     /**
      * 取数组的key全集，内部使用
      * @param key
@@ -118,7 +118,7 @@
                     var names = [];
                     for (var k in value) {
                         //跳过非属性
-                        if (value[k]) {
+                        if (value.hasOwnProperty(k)) {
                             var tkv = u.getName(k, value);
                             for (var i = 0; i < tkv.length; i++) {
                                 names.push(key + '.' + tkv[i]);
@@ -145,11 +145,7 @@
      * @returns {boolean}
      */
     u.startWith = function (str, startString) {
-        if (str && startString && str.length > startString.length && str.substr(0, startString.length) == startString) {
-            return true;
-        } else {
-            return false;
-        }
+        return (typeof str === 'string' && str.indexOf(startString) === 0);
     };
     /**
      * 使用正则表示式判断是否为数字格式
@@ -250,7 +246,7 @@
                 if (ele.style.display == 'none') {
                     ele.style.display = '';
                 }
-                u.removeClass(ele,'hide');
+                u.removeClass(ele, 'hide');
             } else {
                 ele.style.display = 'none';
             }
@@ -352,17 +348,26 @@
      * @param qs {object} 一个包含keyvalue的对象
      */
     u.setUrlQuery = function (qs) {
-        var search='';
+        var search = '';
         for (var q in qs) {
-            if(qs[q]){
+            if (qs[q]) {
                 search += q + '=' + encodeURIComponent(qs[q]) + '&';
             }
         }
         w.location.search = search;
     };
     u.querySelectorAll = function (q) {
-        if(document.querySelectorAll) {
+        if (document.querySelectorAll) {
             return document.querySelectorAll(q);
         }
     };
-})(window, window.Render.util);
+    /**
+     * 计算表达式的值
+     * @param fn
+     * @returns {*}
+     */
+    u.eval = function (fn) {
+        var Fn = Function; //一个变量指向Function，防止有些前端编译工具报错
+        return new Fn('return ' + fn)();
+    };
+})(window, window.jsRender.util);

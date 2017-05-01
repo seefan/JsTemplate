@@ -149,7 +149,7 @@
      * @param val {string} 变量名
      * @returns {string}
      */
-    r.addFunc('noFunc', function (val) {
+    r.addFunc('noFunc', function () {
         return '没有找到正确的处理函数';
     });
     /**
@@ -252,4 +252,4 @@
         }
         return newStr;
     });
-})(window.Render);
+})(window.jsRender);
