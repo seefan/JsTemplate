@@ -312,7 +312,6 @@
      * @param data 要绑定的数据
      */
     r.bindData = function (name, data) {
-
         if (typeof data === 'undefined') {
             data = name;
             name = '__data__';
@@ -329,6 +328,9 @@
             key = items[i].attributes['data-bind'].value;
             if (name != '__data__' && key.indexOf('.') != -1) {
                 key = key.substring(name.length + 1);
+            }
+            if (!key) {
+                continue;
             }
             var bs = this.util.getBindToNameList(items[i]),
                 m = 0;//data-bind-to
